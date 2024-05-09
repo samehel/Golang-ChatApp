@@ -42,9 +42,9 @@ recipient: of type string which stores the recipient of the message and has a st
 content: of type string which stores the content of the message and has a struct tag to hold metadata about the content of the message in JSON format
 */
 type Message struct {
-	sender    string `json:"sender,omitempty"`
-	recipient string `json:"recipient,omitempty"`
-	content   string `json:"content,omitempty"`
+    Sender    string `json:"sender,omitempty"`
+    Recipient string `json:"recipient,omitempty"`
+    Content   string `json:"content,omitempty"`
 }
 
 // Our global manager for our app
@@ -81,13 +81,13 @@ func (manager *ClientManager) start() {
 		select {
 		case conn := <-manager.register:
 			manager.clients[conn] = true
-			jsonMessage, _ := json.Marshal(&Message{content: "Someone successfully connected"})
+			jsonMessage, _ := json.Marshal(&Message{Content: "Someone successfully connected"})
 			manager.send(jsonMessage, conn)
 		case conn := <-manager.unregister:
 			if _, ok := manager.clients[conn]; ok {
 				close(conn.send)
 				delete(manager.clients, conn)
-				jsonMessage, _ := json.Marshal(&Message{content: "Someone successfully disconnected"})
+				jsonMessage, _ := json.Marshal(&Message{Content: "Someone successfully disconnected"})
 				manager.send(jsonMessage, conn)
 			}
 		case message := <-manager.broadcast:
@@ -137,7 +137,7 @@ func (c *Client) read() {
 			c.socket.Close()
 			break
 		}
-		jsonMessage, _ := json.Marshal(&Message{sender: c.id, content: string(message)})
+		jsonMessage, _ := json.Marshal(&Message{Sender: c.id, Content: string(message)})
 		manager.broadcast <- jsonMessage
 	}
 }
