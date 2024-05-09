@@ -4,7 +4,9 @@ import { Injectable, EventEmitter } from '@angular/core';
     Marking it as available to inject as a dependency, 
     based on the socket, a certain event is set to trigger
 */ 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class SocketService {
 
     private socket: WebSocket;
