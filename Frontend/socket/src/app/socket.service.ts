@@ -11,8 +11,10 @@ export class SocketService {
     private listener: EventEmitter<any> = new EventEmitter();
 
     public constructor() {
+        console.log("SocketServer Insttantiated")
         this.socket = new WebSocket("ws://localhost:12345/ws");
         this.socket.onopen = event => {
+            console.log("Websocket connection established")
             this.listener.emit({"type": "open", "data": event});
         }
         this.socket.onclose = event => {
