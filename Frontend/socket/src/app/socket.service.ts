@@ -1,5 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+/* 
+    Marking it as available to inject as a dependency, 
+    based on the socket, a certain event is set to trigger
+*/ 
 @Injectable()
 export class SocketService {
 
@@ -19,15 +23,15 @@ export class SocketService {
         }
     }
 
-    public send(data: string) {
+    public send(data: string): void {
         this.socket.send(data);
     }
 
-    public close() {
+    public close(): void {
         this.socket.close();
     }
 
-    public getEventListener() {
+    public getEventListener(): EventEmitter<any> {
         return this.listener;
     }
 
