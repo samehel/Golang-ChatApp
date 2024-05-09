@@ -51,6 +51,3 @@ To get started with this application, follow these steps:
 
 This project was made for practice purposes and was made by following a [guide](https://www.thepolyglotdeveloper.com/2016/12/create-real-time-chat-app-golang-angular-2-websockets/) and was updated since the old code contained depreciated libraries and outdated methods.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
